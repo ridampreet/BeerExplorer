@@ -1,0 +1,28 @@
+<!-- CONTROLLER:Name of the Apex file being used to fetch results. 
+1.Handler name beerevent in which an event is being callled for taking the input text and then sending it over to the apex file for searching,
+  and returning the results macthing to the input text, 
+  and if no input text is entered the apex file returns any random 10 results to be displayed in the page.
+
+2.beerList attribute type object is being used to access the details that are returned from the apex file which either returns records according to the search event,
+  or just returns some random 10 records.
+3.addToCart attribute being used to update the cart with the number of different beers when selected as add to cart option.
+-->
+
+<aura:component implements="force:appHostable"  controller="BeerSearchAuraService" >
+    <aura:handler name="BeerEvent" event="c:SearchEvent" action="{!c.handleCompEvent}"/>
+    <aura:attribute name="beerList" type="Object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.handleCompEvent}"/>
+    <aura:handler name="addToCart" event="c:AddToCart" action="{!c.updateCart}"/>
+    <div>    
+        <c:HeaderComponent aura:id="headerComp" TagLine="BeerExplorer" message="Search and Order Beer"/>
+    </div>
+    <div>
+        <c:BeerSearch/>
+    </div>
+   
+    <div>
+        <c:BeerListComponent recordList="{!v.beerList}"/>
+    
+    </div>
+    
+</aura:component>

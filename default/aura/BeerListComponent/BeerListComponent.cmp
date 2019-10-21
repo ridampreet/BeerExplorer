@@ -1,0 +1,54 @@
+<!--
+1.recordList contains the object beerList that is being fed from the beerexplorer component.
+Now using the recordList attribute tat contains all the details of the beer we will display the details of the beers using aura:iteration.
+In the aura iteration we name the variable as item and hence forth all the details of recordList will now be accessed by item.[name of the field to be displayed].
+2.Button named view details shows up the details of the beer in the form of ovrLayLib when clicked.
+All the functionality is being done in the function showInfo written in the controller.
+-->
+
+
+<aura:component >
+    <aura:attribute name="recordList" type="Object" />
+     <lightning:overlayLibrary aura:id="overLayLib" />
+    <aura:attribute name="beerId" type="String" />
+
+    <aura:registerEvent name="addToCart" type="c:AddToCart"/>
+
+    <div>
+        <div class="slds-grid slds-wrap">
+            <aura:iteration items="{!v.recordList}" var="item" indexVar="index">
+                <div class="slds-col slds-size_1-of-4 slad-p-around_small">
+                    <lightning:card title="{!item.Name}" footer="{!item.brewery_Name__c}" iconName="custom:custom7">
+                        <p class="slds-p-horizontal_small">
+                            <div class="slds-grid slds-gutters">
+                                <div class="slds-col slds-size_1-of-3">
+                                    <img src="{!$Resource.Beer}" />
+                                </div>
+                            <div class="slds-col slds-size_2-of-3">
+                                ID   : {!item.Id__c} <br/> 
+                                Name : {!item.Name} <br/>
+                                Alcohol % : {!item.Alcohol__c}<br/>
+                                Brewery Name : {!item.brewery_Name__c}
+                                </div>
+                                </div>
+                        </p>
+                        <aura:set attribute="actions">
+                            <lightning:button name="{!item.Id}" label="View Details" value="view Details" variant="brnd" onclick="{!c.showInfo}"  />   
+                         </aura:set>
+                        <aura:set attribute="footer">
+                            <lightning:button name="{!item.Id}" label="Add to Cart" value="{!index}" variant="brand" onclick="{!c.addToCart}"/>
+                        
+                        
+                        </aura:set>
+                        
+                        
+                        
+                    </lightning:card>
+                                    
+                </div>
+             
+            </aura:iteration>
+        </div>
+    </div>
+    
+</aura:component>

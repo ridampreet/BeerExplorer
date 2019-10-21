@@ -1,0 +1,19 @@
+<!-- on clicking view details on a specific beer the page gets redirected to the showinfo function which 
+instructs what to do and which furthur calls this component to display the details and place an order -->
+
+<aura:component >
+    <aura:attribute name="beerId" type="String"/>
+    <lightning:navigation aura:id="navigation"/>
+    <div class="slds-p-around_small">
+    <lightning:recordForm
+                          recordId="{!v.beerId}"
+                          objectApiName="Beer__c"
+                          layoutType="Full"
+                          columns="2"
+                          mode="readonly"/>
+        <div class="slds-p-around_small">
+            <lightning:button value="Order Now" label="Order Now" variant="brand" onclick="{!c.doOrder}"/>
+        
+        </div>
+    </div>
+</aura:component>

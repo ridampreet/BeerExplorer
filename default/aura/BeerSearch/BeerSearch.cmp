@@ -1,0 +1,15 @@
+<!-- takes input text using 'lightning:input' tag to search for beer. and send the input text to BeerExplorer via event SearchEvent event -->
+
+<aura:component controller="BeerSearchAuraService">
+    <aura:registerEvent name="BeerEvent" type="c:SearchEvent"/>
+    <div class="slds-p-around_small">
+  <lightning:input
+        name="inline-search-input"
+        label="Beer Search"
+        type="search"
+        aura:id="searchInput"
+        variant="label-hidden"
+        onchange="{!c.doSearch}"
+    />
+      </div>
+</aura:component>
